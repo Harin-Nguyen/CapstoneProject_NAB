@@ -5,7 +5,6 @@ import Products from '../pageObjects/Products';
 import CheckOut from '../pageObjects/CheckOut';
 import profilePage from '../pageObjects/profilePage';
 
-
 describe('E2E Tests for E-commerce Application', () => {
   const register = new Register(); // Correct instantiation of the class
   const login = new LoginPage();
@@ -31,11 +30,11 @@ describe('E2E Tests for E-commerce Application', () => {
     login.validateLoginSuccess();
   });
 
-
-
   it('Search for a product, add to cart, and complete checkout', () => {
     // Tìm kiếm sản phẩm với tên "Sony Playstation 5"
     homePage.searchProduct('Sony Playstation 5');
+    // Kiểm tra sản phẩm xuất hiện trong kết quả
+    homePage.verifyProductInResults('Sony Playstation 5');
     // Truy cập trang chi tiết sản phẩm
     homePage.visitProduct('Sony Playstation 5');
     // Đảm bảo URL đã chuyển hướng tới trang chi tiết sản phẩm
