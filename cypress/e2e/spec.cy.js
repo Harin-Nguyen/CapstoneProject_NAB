@@ -55,11 +55,19 @@ describe('E2E Tests for E-commerce Application', () => {
     checkOut.verifyOrderDetailsPage();
     // checkOut.verifyPaymentMethod();
     checkOut.updatePaymentStatus();
-    // trở về trang profile sau khi thanh toán và xem chi tiết order mới nhất:
-    profile.navigateToHome();
-    profile.clickUser();
-    profile.selectProfile();
-    profile.viewLatestOrderDetails();
+    checkOut.verifyOrderDetailsPageID(); // Lấy ID của đơn hàng
+
+    cy.get('@orderId').then((orderId) => {
+      // Điều hướng đến trang profile
+      cy.visit('http://localhost:3000/profile');
+      cy.url().should('include', '/profile');
+  
+      // Giả lập cập nhật trạng thái thanh toán của đơn hàng bằng ID
+      profile.updateOrderStatusById(orderId);
+  
+      // Xác minh trạng thái thanh toán đã được cập nhật
+      profile.verifyPaymentDateById(orderId);
+    });
   });
 });
 

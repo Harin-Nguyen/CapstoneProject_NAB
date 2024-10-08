@@ -34,6 +34,14 @@ class CheckOut {
         .and('contain', 'Paid on') // Kiểm tra rằng trạng thái là "Paid"
         .and('contain', new Date().toISOString().substring(0, 10)); // Kiểm tra ngày hiện tại
     }
-    
+
+    verifyOrderDetailsPageID() {
+      cy.url().should('include', '/order/'); 
+      // Lấy ID của đơn hàng từ URL (giả sử ID là phần cuối của URL)
+      cy.url().then((url) => {
+        const orderId = url.split('/').pop(); // Lấy phần cuối của URL (ID của đơn hàng)
+        cy.wrap(orderId).as('orderId'); // Lưu ID đơn hàng vào alias để sử dụng sau này
+      });
+    }
   }
   export default CheckOut;
