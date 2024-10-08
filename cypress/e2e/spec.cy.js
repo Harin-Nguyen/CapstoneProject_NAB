@@ -34,10 +34,11 @@ describe('E2E Tests for E-commerce Application', () => {
   it('Search for a product, add to cart, and complete checkout', () => {
     // Tìm kiếm sản phẩm với tên "Sony Playstation 5"
     homePage.searchProduct('Sony Playstation 5');
-    // Truy cập trang chi tiết sản phẩm
-    homePage.visitProduct('Sony Playstation 5');
     // Kiểm tra sản phẩm xuất hiện trong kết quả
     homePage.verifyProductInResults('Sony Playstation 5');
+    // Truy cập trang chi tiết sản phẩm
+    homePage.visitProduct('Sony Playstation 5');
+    
     // Đảm bảo URL đã chuyển hướng tới trang chi tiết sản phẩm
     cy.url().should('include', '/product');
     // Thêm sản phẩm vào giỏ hàng
