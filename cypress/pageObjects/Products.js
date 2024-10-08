@@ -1,11 +1,11 @@
 class Products {
     addToCart() {
-      // Thêm sản phẩm vào giỏ hàng từ trang chi tiết sản phẩm
-      cy.get('button.btn-block.btn.btn-primary').contains('Add To Cart').click();  // Đảm bảo chọn đúng nút
+      // Hàm thêm sản phẩm vào giỏ hàng 
+      cy.get('button.btn-block.btn.btn-primary').contains('Add To Cart').click();  
     }
     validateCartUpdated() {
-      // Kiểm tra giỏ hàng đã được cập nhật
-      cy.get('.form-control').should('contain', '1');  // Kiểm tra số lượng sản phẩm trong giỏ hàng
+      // Hàm xác nhận giỏ hàng được cập nhật
+      cy.get('a[href="/cart"] .badge').should('contain', '1');
     }
   }
   export default Products;
