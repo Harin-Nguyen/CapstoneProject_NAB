@@ -25,7 +25,7 @@ class loginPage {
 
   // Xác nhận việc đăng nhập thành công:
   validateLoginSuccess() {
-    // Kiểm tra URL hiện tại có chứa đường dẫn chính xác sau khi đăng nhập ko:
+    // Kiểm tra URL hiện tại có chứa đường dẫn chính xác sau khi đăng nhập không:
     cy.url().should('eq', 'http://localhost:3000/');
   }
 }

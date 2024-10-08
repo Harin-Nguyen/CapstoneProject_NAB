@@ -1,4 +1,7 @@
 class HomePage{
+    visit() {
+        cy.url().should('include', 'http://localhost:3000/'); // Kiểm tra rằng URL có chứa '/profile'
+    }
     searchProduct(productName) {
       cy.get(".mr-sm-2.ml-sm-5.form-control").type(`${productName}{enter}`);
       cy.get(".p-2.mx-2.btn.btn-outline-success").click();  // Giả sử nút Search có kiểu submit
