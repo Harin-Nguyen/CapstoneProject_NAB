@@ -3,7 +3,7 @@ import LoginPage from '../pageObjects/LoginPage';
 import HomePage from '../pageObjects/HomePage';
 import Products from '../pageObjects/Products';
 import CheckOut from '../pageObjects/CheckOut';
-import ProfilePage from '../pageObjects/ProfilePage';
+import ProfilePage from '../pageObjects/profilePage';
 
 describe('E2E Tests for E-commerce Application', () => {
   const register = new Register(); // Correct instantiation of the class
@@ -25,7 +25,7 @@ describe('E2E Tests for E-commerce Application', () => {
       register.fillConfirmPassword(userInfo.password);
       register.submit();
       register.validateRegistrationSuccess();
-      
+
       // Đăng nhập ngay sau khi đăng ký
       login.visit();
       login.fillEmail(userInfo.email);
@@ -34,20 +34,21 @@ describe('E2E Tests for E-commerce Application', () => {
       login.validateLoginSuccess();
     });
   });
-  
+
 
 
   it('Search for a product, add to cart, and complete checkout', () => {
     cy.fixture('example').then((data) => {
       const shippingDetails = data.shippingDetails;
+      const productName = data.productName;
 
       // Tìm kiếm sản phẩm với tên "Sony Playstation 5"
-      homePage.searchProduct('Sony Playstation 5');
+      homePage.searchProduct(productName.product);
       // Kiểm tra sản phẩm xuất hiện trong kết quả
-      homePage.verifyProductInResults('Sony Playstation 5');
+      homePage.verifyProductInResults(productName.product);
       // Truy cập trang chi tiết sản phẩm
-      homePage.visitProduct('Sony Playstation 5');
-      
+      homePage.visitProduct(productName.product);
+
       // Đảm bảo URL đã chuyển hướng tới trang chi tiết sản phẩm
       cy.url().should('include', '/product');
       // Thêm sản phẩm vào giỏ hàng
@@ -67,18 +68,16 @@ describe('E2E Tests for E-commerce Application', () => {
 
       cy.get('@orderId').then((orderId) => {
         // Điều hướng đến trang profile
-        cy.visit('http://localhost:3000/profile');
-        cy.url().should('include', '/profile');
-    
+        profile.navigateToHome();
+        profile.clickUser();
+        profile.selectProfile();
+
         // Giả lập cập nhật trạng thái thanh toán của đơn hàng bằng ID
         profile.updateOrderStatusById(orderId);
-    
+
         // Xác minh trạng thái thanh toán đã được cập nhật
         profile.verifyPaymentDateById(orderId);
       });
     });
   });
 });
-
-
- 
