@@ -1,5 +1,13 @@
 {
-  "name": "Harry Potter",
-  "email": "harryPotter@gmail.com",
-  "password": "123456"
+  "userInfo": {
+    "name": "Harry Potter",
+    "email": "harryPotter@gmail.com",
+    "password": "123456"
+  },
+  "shippingDetails": {
+    "address": "221B Baker Street",
+    "city": "London",
+    "postalCode": " NW1 6XE",
+    "country": "United Kingdom"
+  }
 }
