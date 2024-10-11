@@ -35,8 +35,7 @@ describe('E2E Tests for E-commerce Application', () => {
     });
   });
 
-
-
+// User purchase flow
   it('Search for a product, add to cart, and complete checkout', () => {
     cy.fixture('example').then((data) => {
       const shippingDetails = data.shippingDetails;
@@ -80,4 +79,6 @@ describe('E2E Tests for E-commerce Application', () => {
       });
     });
   });
+
+
 });
