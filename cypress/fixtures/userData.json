@@ -1,0 +1,34 @@
+{
+  "userInfo": {
+    "name": "Harry Potter",
+    "email": "harryPotter@gmail.com",
+    "password": "123456"
+  },
+  "shippingDetails": {
+    "address": "221B Baker Street",
+    "city": "London",
+    "postalCode": " NW1 6XE",
+    "country": "United Kingdom"
+  },
+  "productName":{
+    "product":"Samsung S24 Ultra"
+  },
+
+  "adminInfo": {
+    "email": "admin@email.com",
+    "password": "123456"
+  },
+  "newProduct": {
+    "name": "Samsung S24 Ultra",
+    "price": "1500",
+    "imagePath": "Samsung-S24-Ultra.jpg",
+    "brand": "Samsung",
+    "inStock": "6",
+    "category": "Smart Phone",
+    "description": "The Samsung Galaxy S24 is a compact, powerful smartphone featuring a 6.2-inch display, Snapdragon 8 Gen 3 processor, and a 50MP camera."
+  },
+  "deleteProduct": {
+    "name": "Sample name"
+  }
+  
+}
