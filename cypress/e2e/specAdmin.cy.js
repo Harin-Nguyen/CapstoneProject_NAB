@@ -1,11 +1,14 @@
 import AdminLogin from '../pageObjects/AdminLogin';
 import AdminDashboardPage from '../pageObjects/AdminDashboard';
 import ProductManagement from '../pageObjects/ProductManagement';
+import OrderManagement from '../pageObjects/OrderManagement';
 
 describe('E2E Tests for E-commerce Application', () => {
   const adminLogin = new AdminLogin();
   const dashboard = new AdminDashboardPage();
   const product = new ProductManagement();
+  const order = new OrderManagement();
+
 
   // ADMIN FLOW
   describe('Admin Flow', () => {
@@ -22,17 +25,28 @@ describe('E2E Tests for E-commerce Application', () => {
       });
     });
 
-      // it('Admin confirms order has been delivered', () => {
-      //   // Điều hướng đến trang quản lý sản phẩm
-      //   dashboard.openAdminDropdown();
-      //   dashboard.navigateToOrders();
-      //   order.viewOrderList();
-      //   // order.viewOrderDetailsIfPaid();
-      //   // order.markOrderAsDelivered();
-      //   order.selectPaidOrderWithoutDelivery();
-      // });
+    const loginAdmin = () => {
+      cy.fixture('userData').then((admin) => {
+        const adminInfo = admin.adminInfo;
+        adminLogin.visit();
+        adminLogin.fillEmail(adminInfo.email);
+        adminLogin.fillPassword(adminInfo.password);
+        adminLogin.submit();
+        adminLogin.validateLoginSuccess();
+      });
+    };
+
+      it('should find a paid order and click details', () => {
+        dashboard.openAdminDropdown();
+        dashboard.navigateToOrders();
+
+        order.findAndClickRandomPaidOrder();
+        order.markAsDelivered();
+    });
 
       it('Create and delete a product', () => {
+        cy.visit('http://localhost:3000/login')
+        loginAdmin();
         dashboard.openAdminDropdown();
         dashboard.navigateToProducts();
     

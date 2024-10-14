@@ -6,11 +6,11 @@ class AdminDashboardPage {
     }
 
     // Điều hướng đến trang Orders
-    // navigateToOrders() {
-    //     //this.openAdminDropdown(); // Mở dropdown
-    //     cy.get('.dropdown-item').contains('Orders').click(); // Nhấn vào mục "Orders"
-    //     cy.url().should('include', '/admin/orderlist'); // Kiểm tra URL
-    // }
+    navigateToOrders() {
+        //this.openAdminDropdown(); // Mở dropdown
+        cy.get('.dropdown-item').contains('Orders').click(); // Nhấn vào mục "Orders"
+        cy.url().should('include', '/admin/orderlist'); // Kiểm tra URL
+    }
 
     // Điều hướng đến trang Users
     // navigateToUsers() {
